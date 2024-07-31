@@ -3,9 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Design and Order your favourite Momo</title>
+    <link rel="stylesheet" th:href="@{/css/designPageStyle.css}"/>
 </head>
 <body>
-    <h2>Design and Order your Momo</h2>
+    <h2 class="design">Order your favourite Momo from Momo Center!</h2>
+    <div>
+        <img th:src="@{/images/banner.jpg}" height="200px" alt="Momo Center Banner"/>
+    </div>
+
+    <form method="post" th:object="${momo}">
+        <div id="filling">
+            <h3>What is the type of Momo would you like to order?</h3>
+            <div th:each="ingredient: ${filling}">
+                <input th:value="${ingredient.id}" type="radio" name="filling" />
+                <span th:text="${ingredient.name}">FILLING</span>
+            </div>
+        </div>
+
+        <div id="cookingstyle">
+            <h3>How do you like it cooked?</h3>
+            <div th:each="ingredient: ${cookingstyle}">
+                <input th:value="${ingredient.id}" type="radio" name="cookingstyle" />
+                <span th:text="${ingredient.name}">COOKING STYLE</span>
+            </div>
+        </div>
+
+        <div id="sauce">
+            <h3>Select the sauce:</h3>
+            <div th:each="ingredient: ${sauce}">
+                <input th:value="${ingredient.id}" type="checkbox" name="sauce" />
+                <span th:text="${ingredient.name}">SAUCE</span>
+            </div>
+        </div>
+
+        <div>
+            <h3>Name your Momo</h3>
+            <input type="text" th:field="*{name}" /><br/>
+
+            <button type="submit">Order your Momo</button>
+        </div>
+    </form>
 
 </body>
 </html>
