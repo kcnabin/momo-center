@@ -8,6 +8,12 @@ public class Ingredient {
     private String name;
     private Type type;
 
+    public Ingredient(String id, String name, Type type) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+    }
+
     public enum Type {
         FILLING, COOKINGSTYLE, SAUCE
     }
