@@ -7,10 +7,7 @@ import momo.Momo;
 import momo.MomoOrder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -62,5 +59,13 @@ public class DesignMomoController {
     @GetMapping
     public String showDesignForm() {
         return "design.html";
+    }
+
+    @PostMapping
+    public String processMomo(Momo momo, @ModelAttribute MomoOrder momoOrder) {
+        momoOrder.addMomo(momo);
+        log.info("Processing momo: {}", momo);
+
+        return "redirect:/orders/current";
     }
 }

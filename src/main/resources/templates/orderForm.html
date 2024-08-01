@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delivery Details</title>
+</head>
+<body>
+    <h2 class="design">Order your favourite Momo from Momo Center!</h2>
+    <div>
+        <img th:src="@{/images/banner.jpg}" height="200px" alt="Momo Center Banner"/>
+    </div>
+
+    <form method="post" th:action="@{/orders}" th:object="${momoOrder}">
+        <h2 class="design">Order your favourite Momo!</h2>
+
+        <h3>Your Momos in this order!</h3>
+        <ul>
+            <li th:each="momo: ${momoOrder.momos}">
+                <span th:text="${momo.name}">YOUR MOMO NAME</span>
+            </li>
+        </ul>
+
+        <a th:href="@{/design}" id="another">Add another Momo</a><br/><br/><br/>
+
+        <h3>Deliver my Momo orders to:</h3>
+        <label for="deliveryName">Name</label>
+        <input type="text" th:field="*{deliveryName}" id="deliveryName" /><br/><br/>
+
+
+        <label for="deliveryStreet">Street</label>
+        <input type="text" th:field="*{deliveryStreet}" id="deliveryStreet" /><br/><br/>
+
+        <label for="deliveryCity">City</label>
+        <input type="text" th:field="*{deliveryCity}" id="deliveryCity" /><br/><br/>
+
+        <label for="deliveryState">State</label>
+        <input type="text" th:field="*{deliveryState}" id="deliveryState" /><br/><br/>
+
+        <label for="deliveryZip">Zip</label>
+        <input type="text" th:field="*{deliveryZip}" id="deliveryZip" /><br/><br/>
+
+
+        <h3>Here is how I will pay!</h3>
+
+        <label for="cardNumber">Card Number</label>
+        <input type="text" th:field="*{cardNumber}" id="cardNumber" /><br/><br/>
+
+        <label for="cardExpiration">Card Expiration</label>
+        <input type="text" th:field="*{cardExpiration}" id="cardExpiration" /><br/><br/>
+
+        <label for="cardCVV">Card CVV</label>
+        <input type="text" th:field="*{cardCVV}" id="cardCVV" /><br/><br/>
+
+        <button type="submit">Submit Order</button>
+
+    </form>
+
+</body>
+</html>
