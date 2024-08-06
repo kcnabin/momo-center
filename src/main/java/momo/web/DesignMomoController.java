@@ -1,5 +1,6 @@
 package momo.web;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import momo.Ingredient;
 import momo.Ingredient.Type;
@@ -7,6 +8,7 @@ import momo.Momo;
 import momo.MomoOrder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -62,7 +64,11 @@ public class DesignMomoController {
     }
 
     @PostMapping
-    public String processMomo(Momo momo, @ModelAttribute MomoOrder momoOrder) {
+    public String processMomo(@Valid Momo momo, Errors errors, @ModelAttribute MomoOrder momoOrder) {
+        if (errors.hasErrors()) {
+            return "design.html";
+        }
+
         momoOrder.addMomo(momo);
         log.info("Processing momo: {}", momo);
 
